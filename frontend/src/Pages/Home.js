@@ -5,7 +5,10 @@ import React from "react";
 function Home(){
     return (
         <div>
-            <h5 className="text-center">Home Page</h5>
+            
+            <div className="min-vh-100" style={{backgroundColor: "#D5EDDC"}}>
+
+            </div>
         </div>
     )
 }
