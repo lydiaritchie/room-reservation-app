@@ -13,10 +13,12 @@ import NavBar from "./utils/NavBar";
 
 
 import './App.css';
+import './theme.css';
+import './main.css';
 
 function App() {
   return (
-    <div>
+    <div className="theme-bg">
     <nav>
     <NavBar />
         
