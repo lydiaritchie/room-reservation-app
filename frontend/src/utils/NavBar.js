@@ -15,8 +15,8 @@ const NavBar = () => {
         style={{ zIndex: 1030, cursor: 'pointer' }}
         onClick={toggleNav}
       >
-        <div className="bg-primary rounded-circle p-3">
-          <span className="text-white fw-bold">☰</span>
+        <div className="">
+          <span className="theme-btn">☰</span>
         </div>
       </div>
 
