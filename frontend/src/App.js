@@ -9,10 +9,11 @@ import './App.css';
 
 function App() {
   return (
-   <Routes>
+   <Routes >
       <Route path="/" element={<Home />}/> 
       <Route path="*" element={<NotFound />} />
    </Routes>
+
   );
 }
 

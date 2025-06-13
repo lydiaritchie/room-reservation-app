@@ -5,10 +5,8 @@ import React from "react";
 function Home(){
     return (
         <div>
-            <h1>Home Page</h1>
-            sdfsd;lkj
+            <h5 className="text-center">Home Page</h5>
         </div>
-
     )
 }
 
