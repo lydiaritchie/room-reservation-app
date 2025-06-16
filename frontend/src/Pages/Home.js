@@ -5,8 +5,7 @@ import React from "react";
 function Home(){
     return (
         <div>
-
-            <div className="min-vh-100" style={{backgroundColor: "#D5EDDC"}}>
+            <div className="theme-bg" style={{backgroundColor: "#D5EDDC"}}>
             Home
             </div>
         </div>

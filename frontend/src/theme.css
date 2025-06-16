@@ -1,18 +1,21 @@
 /* theme.css */
 :root {
-  --primary-bg: #D5EDDC;
-  --primary-text: #2E3D49;
-  --secondary-text: #5A6D7D;
-  --accent-color: #9fc9b6;
+  --primary-bg: #d5eddc;
+  --primary-text: #2e3d49;
+  --secondary-text: #5a6d7d;
+  --accent-color: #b9d2c7;
   --card-bg: rgba(255, 255, 255, 0.85);
 }
 
 /* Base theme application */
+
 .theme-bg {
   min-height: 100vh;
+  padding: 15px;
   background-color: var(--primary-bg);
   color: var(--primary-text);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", Tahoma, Geneva,
+    Verdana, sans-serif;
 }
 
 /* Typography */
@@ -34,15 +37,16 @@
 
 /* Buttons */
 .theme-btn {
+  background-color: var(--accent-color);
   color: white;
   border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
   transition: all 0.3s ease;
 }
 
 .theme-btn:hover {
-  background-color: #3D9970;
+  background-color: #3d9970;
   transform: translateY(-1px);
 }
 

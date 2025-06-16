@@ -1,62 +1,103 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const [isNavVisible, setIsNavVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check screen size on mount and resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 992); // Bootstrap's lg breakpoint
+      if (!isMobile) setIsNavVisible(false); // Close mobile menu when resizing to desktop
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobile]);
 
   const toggleNav = () => {
-    setIsNavVisible(!isNavVisible);
+    if (isMobile) setIsNavVisible(!isNavVisible);
   };
 
-  return (
-    <div className="position-relative">
-      {/* Logo/Toggle Button (Top Right) */}
-      <div 
-        className="position-fixed end-0 top-0 m-3" 
-        style={{ zIndex: 1030, cursor: 'pointer' }}
-        onClick={toggleNav}
-      >
-        <div className="">
-          <span className="theme-btn">☰</span>
+  // Desktop Nav Items (horizontal)
+  const desktopNav = (
+    <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">Your Logo</Link>
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav me-auto">
+            <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/add-reservation">Add Reservation</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/account">Account</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/settings">Settings</Link></li>
+            <li className="nav-item"><Link className="nav-link text-danger" to="/logout">Log Out</Link></li>
+          </ul>
         </div>
       </div>
+    </nav>
+  );
 
-      {/* Hidden NavBar */}
-      <div 
-        className={`position-fixed end-0 top-0 vh-100 bg-light shadow-lg ${isNavVisible ? '' : 'translate-x-100'} `}
+  // Mobile Nav Items (vertical)
+  const mobileNav = (
+    <>
+      {/* Hamburger Icon */}
+      <button 
+        className="navbar-toggler position-fixed end-0 top-0 m-3" 
+        type="button"
+        onClick={toggleNav}
         style={{
-          width: '250px',
-          transition: 'transform 0.3s ease-in-out',
-          zIndex: 1020,
-          transform: isNavVisible ? 'translateX(0)' : 'translateX(100%)'
+          zIndex: 1030,
+          border: 'none',
+          background: 'transparent'
         }}
       >
-        <div className="d-flex flex-column h-100 p-4">
-          <h4 className="mb-4 text-primary">Menu</h4>
-          
-          {/* Vertical Navigation Links */}
-          <nav className="nav flex-column">
-            <a className="nav-link py-3 border-bottom" href="/">Home</a>
-            <a className="nav-link py-3 border-bottom" href="add-reservation">Add Reservation</a>
-            <a className="nav-link py-3 border-bottom" href="account">Account</a>
-            <a className="nav-link py-3 border-bottom" href="settings">Settings</a>
-            <a className="nav-link py-3 text-danger" href="logout">Log Out</a>
-          </nav>
+        <span className="theme-btn">menu</span>
+      </button>
 
-          <div className="mt-auto text-muted small">
-            © {new Date().getFullYear()} Your App
-          </div>
+      {/* Mobile Menu */}
+      <div 
+        className={`offcanvas offcanvas-end ${isNavVisible ? 'show' : ''}`}
+        style={{
+          visibility: isNavVisible ? 'visible' : 'hidden',
+          width: '250px'
+        }}
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title">Menu</h5>
+          <button 
+            type="button" 
+            className="btn-close" 
+            onClick={toggleNav}
+          ></button>
+        </div>
+        <div className="offcanvas-body d-flex flex-column">
+          <Link className="py-2 text-decoration-none" to="/" onClick={toggleNav}>Home</Link>
+          <Link className="py-2 text-decoration-none" to="/add-reservation" onClick={toggleNav}>Add Reservation</Link>
+          <Link className="py-2 text-decoration-none" to="/account" onClick={toggleNav}>Account</Link>
+          <Link className="py-2 text-decoration-none" to="/settings" onClick={toggleNav}>Settings</Link>
+          <Link className="py-2 text-danger text-decoration-none" to="/logout" onClick={toggleNav}>Log Out</Link>
         </div>
       </div>
 
-      {/* Overlay when nav is open */}
+      {/* Overlay */}
       {isNavVisible && (
         <div 
           className="position-fixed start-0 top-0 w-100 h-100 bg-dark opacity-50"
-          style={{ zIndex: 1010 }}
+          style={{ zIndex: 1020 }}
           onClick={toggleNav}
         />
       )}
-    </div>
+    </>
+  );
+
+  return (
+    <header>
+      {/* Show desktop nav on large screens, mobile on small screens */}
+      <div className="d-none d-lg-block">{desktopNav}</div>
+      <div className="d-lg-none">{mobileNav}</div>
+    </header>
   );
 };
 
