@@ -15,11 +15,11 @@ import "./main.css";
 
 function App() {
   return (
-    <div className="theme-bg theme-text">
+    <div className="theme-text">
       <nav>
         <NavBar />
       </nav>
-      <div className="theme-main-container">
+      <div className="theme-pg">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-reservation" element={<AddReservation />} />

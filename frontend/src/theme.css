@@ -8,8 +8,11 @@
 }
 
 /* Base theme application */
+.theme-bg{
+    background-color: var(--primary-bg);
+}
 
-.theme-bg {
+.theme-pg {
   min-height: 100vh;
   padding: 15px;
   background-color: var(--primary-bg);
