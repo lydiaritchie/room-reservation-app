@@ -17,22 +17,17 @@ function Navbar() {
         style={{ willChange: "transform" }}
       >
         <div className="container-fluid">
+          <Link style={{ backgroundColor: "" }} className="navbar-brand" to="/">
+            <img style={{ width: "70px" }} alt="ISDSI Logo" src={isdsiLogo} />
+          </Link>
           <button
             className="navbar-toggler"
-            type="button"
             onClick={toggleNavbar}
             aria-expanded={isOpen}
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <Link
-            style={{ backgroundColor: "black" }}
-            className="navbar-brand"
-            to="/"
-          >
-            <img style={{ width: "50px" }} alt="ISDSI Logo" src={isdsiLogo} />
-          </Link>
         </div>
       </div>
 
@@ -42,18 +37,24 @@ function Navbar() {
           isOpen ? "" : "d-md-none collapse"
         }`}
         style={{
-          width: "250px",
+          width: "130px",
           height: "100vh",
           position: "fixed",
-          left: 0,
+          right: 0,
           top: 0,
           zIndex: 1040,
-          transform: isOpen ? "translateX(0)" : "translateX(-100%)",
+          transform: isOpen ? "translateX(0)" : "translateX(100%)",
           transition: "transform 0.3s ease",
-          marginTop: "56px", // Height of the mobile header
         }}
       >
-        <div className="d-flex flex-column">
+        <button
+          onClick={toggleNavbar}
+          className="align-self-end btn text-decoration-none"
+          style={{ fontSize: "1.5rem" }}
+        >
+          × {/* This is the X symbol */}
+        </button>
+        <div className="d-flex flex-column align-items-end px-3">
           <Link
             className="nav-link py-2"
             to="/"
@@ -66,14 +67,7 @@ function Navbar() {
             to="/add-reservation"
             onClick={() => setIsOpen(false)}
           >
-            Add Reservation
-          </Link>
-          <Link
-            className="nav-link py-2"
-            to="/account"
-            onClick={() => setIsOpen(false)}
-          >
-            Account
+            Create
           </Link>
           <Link
             className="nav-link py-2"
@@ -83,7 +77,7 @@ function Navbar() {
             Settings
           </Link>
           <Link
-            className="nav-link py-2 text-danger mt-3"
+            className="nav-link py-2 text-danger"
             to="/logout"
             onClick={() => setIsOpen(false)}
           >
@@ -97,21 +91,34 @@ function Navbar() {
         className="d-none d-md-flex navbar navbar-expand-md navbar-light sticky-top overflow-hidden theme-bg"
         style={{ willChange: "transform" }}
       >
-       <div className="container-fluid">
-    {/* Logo stays on the left */}
-    <Link className="navbar-brand" to="/">
-      <img style={{ width: "70px", height: "auto", display:"block" }} alt="ISDSI Logo" src={isdsiLogo} />
-    </Link>
+        <div className="container-fluid">
+          {/* Logo stays on the left */}
+          <Link className="navbar-brand" to="/">
+            <img
+              style={{ width: "70px", height: "auto", display: "block" }}
+              alt="ISDSI Logo"
+              src={isdsiLogo}
+            />
+          </Link>
 
-    {/* Links container pushed to the right */}
-    <div className="d-flex align-items-center gap-3 ms-auto"> {/* Added ms-auto here */}
-      <Link className="nav-link" to="/">Home</Link>
-      <Link className="nav-link" to="/add-reservation">Add Reservation</Link>
-      <Link className="nav-link" to="/account">Account</Link>
-      <Link className="nav-link" to="/settings">Settings</Link>
-      <Link className="nav-link text-danger" to="/logout">Log Out</Link>
-    </div>
-  </div>
+          {/* Links container pushed to the right */}
+          <div className="d-flex align-items-center gap-3 ms-auto mx-3">
+            {" "}
+            {/* Added ms-auto here */}
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
+            <Link className="nav-link" to="/add-reservation">
+              Create
+            </Link>
+            <Link className="nav-link" to="/settings">
+              Settings
+            </Link>
+            <Link className="nav-link text-danger" to="/logout">
+              Log Out
+            </Link>
+          </div>
+        </div>
       </nav>
     </>
   );
