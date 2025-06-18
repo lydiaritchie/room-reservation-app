@@ -1,4 +1,5 @@
-// Update with your config settings.
+const { DATABASE_URL_DEVELOPMENT } = process.env;
+const path = require("path");
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -6,7 +7,7 @@
 module.exports = {
 
   development: {
-    client: 'postgres',
+    client: "pg",
     connection: DATABASE_URL_DEVELOPMENT,
     migrations: {
       directory: path.join(__dirname, "src", "db", "migrations"),
@@ -14,22 +15,17 @@ module.exports = {
     seeds: {
       directory: path.join(__dirname, "src", "db", "seeds"),
     },
-    debug: !!DEBUG,
+    debug: true,
   },
-    production: {
-    client: 'postgres',
-    connection: DATABASE_URL_PRODUCTION,
-    migrations: {
-      directory: path.join(__dirname, "src", "db", "migrations"),
-    },
-    seeds: {
-      directory: path.join(__dirname, "src", "db", "seeds"),
-    },
-    debug: !!DEBUG,
-  },
-
-
-
-
-
+  // production: {
+  //   client: "pg",
+  //   connection: DATABASE_URL_PRODUCTION,
+  //   migrations: {
+  //     directory: path.join(__dirname, "src", "db", "migrations"),
+  //   },
+  //   seeds: {
+  //     directory: path.join(__dirname, "src", "db", "seeds"),
+  //   },
+  //   debug: !!DEBUG,
+  // },
 };
