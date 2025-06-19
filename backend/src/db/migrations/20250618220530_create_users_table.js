@@ -2,13 +2,13 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
-  return knex.schema.createTable('users', (table) => {
-    table.increments('id').primary();
-    table.string('email').notNullable().unique(); // Email as username
-    table.string('first_name').notNullable();
-    table.string('last_name').notNullable();
-    table.text('password_hash').notNullable(); // For Argon2 hashes
+exports.up = function (knex) {
+  return knex.schema.createTable("users", (table) => {
+    table.increments("id").primary();
+    table.string("email").notNullable().unique(); // Email as username
+    table.string("first_name").notNullable();
+    table.string("last_name").notNullable();
+    table.text("password_hash").notNullable(); // For Argon2 hashes
     table.timestamps(true, true); // created_at, updated_at
   });
 };
@@ -17,6 +17,6 @@ exports.up = function(knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
-    return knex.schema.dropTable('users');
+exports.down = function (knex) {
+  return knex.schema.dropTable("users");
 };
