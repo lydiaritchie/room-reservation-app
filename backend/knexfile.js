@@ -1,5 +1,7 @@
-const { DATABASE_URL_DEVELOPMENT } = process.env;
 const path = require("path");
+require('dotenv').config({ path: path.resolve(__dirname, 'src/.env') });
+const { DATABASE_URL_DEVELOPMENT } = process.env;
+
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
